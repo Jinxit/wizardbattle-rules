@@ -3,12 +3,15 @@
 
 #include <vector>
 #include "wizard.hpp"
-#include "move.hpp"
+
 
 namespace WizardBattle
 {
 	namespace Rules
 	{
+		// forward declaration
+		class Move;
+
 		class Board
 		{
 		private:

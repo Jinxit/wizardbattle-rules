@@ -1,13 +1,17 @@
 #ifndef WIZARDBATTLE_RULES_MOVE_H
 #define WIZARDBATTLE_RULES_MOVE_H
 
-// forward declaration
-class Board;
+#include <vector>
+
+#include "wizard.hpp"
 
 namespace WizardBattle
 {
 	namespace Rules
 	{
+		// forward declaration
+		class Board;
+
 		class Move
 		{
 		private:

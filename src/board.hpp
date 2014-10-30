@@ -2,8 +2,10 @@
 #define WIZARDBATTLE_RULES_BOARD_H
 
 #include <vector>
-#include "wizard.hpp"
+#include <tuple>
 
+#include "enums.hpp"
+#include "wizard.hpp"
 
 namespace WizardBattle
 {
@@ -19,6 +21,7 @@ namespace WizardBattle
 			unsigned int width, height;
 			std::vector<Wizard> wizards;
 			std::vector<unsigned int> temperatures;
+			Phase phase;
 
 			Board(unsigned int width, unsigned int height,
 				std::vector<Wizard> wizards, std::vector<unsigned int> temperatures)

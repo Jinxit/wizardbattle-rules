@@ -20,10 +20,7 @@ namespace WizardBattle
 			{
 				RAISE,
 				LOWER,
-				UP,
-				DOWN,
-				LEFT,
-				RIGHT
+				MOVE
 			};
 
 			const Type type;
@@ -32,7 +29,33 @@ namespace WizardBattle
 			Move(Type type, unsigned int x, unsigned int y)
 				: type(type), x(x), y(y) { };
 
-			const Board apply(const Board & board, unsigned int wizardID) const;
+			Board apply(const Board & board, unsigned int wizardID) const
+			{
+				auto wizards = board.wizards;
+				auto temperatures = board.temperatures;
+				auto & temp = temperatures[board.getIndex(x, y)];
+				auto & wiz = wizards[wizardID];
+
+				switch (type)
+				{
+					case RAISE:
+						temp += 1;
+						break;
+					case LOWER:
+						temp -= 1;
+						break;
+
+					case MOVE:
+						wiz = Wizard(x, y);
+						if (temp == 0)
+						{
+							wiz = wiz.kill();
+						}
+						break;
+				}
+
+				return Board(board.width, board.height, wizards, temperatures);
+			}
 		};
 	}
 }

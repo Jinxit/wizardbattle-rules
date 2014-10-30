@@ -71,8 +71,14 @@ namespace WizardBattle
 
 						if (!isWizardAt(x, y))
 						{
-							moves.emplace_back(ACTION_RAISE, x, y);
-							moves.emplace_back(ACTION_LOWER, x, y);
+							if (temperatures[i] < 9)
+							{
+								moves.emplace_back(ACTION_RAISE, x, y);
+							}
+							if (temperatures[i] > 0)
+							{
+								moves.emplace_back(ACTION_LOWER, x, y);
+							}
 						}
 					}
 				}

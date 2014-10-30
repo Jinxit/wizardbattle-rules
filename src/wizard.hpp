@@ -11,13 +11,13 @@ namespace WizardBattle
 			Wizard(unsigned int x, unsigned int y, bool alive)
 				: x(x), y(y), alive(alive) { };
 		public:
-			const unsigned int x, y;
-			const bool alive;
+			unsigned int x, y;
+			bool alive;
 
 			Wizard(unsigned int x, unsigned int y)
 				: Wizard(x, y, true) { };
 
-			const Wizard kill() const
+			Wizard kill() const
 			{
 				return Wizard(x, y, false);
 			};

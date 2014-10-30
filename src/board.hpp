@@ -114,7 +114,19 @@ namespace WizardBattle
 				return moves;
 			};
 
-			std::vector<Board> getPossibleNextStates(unsigned int wizardID) const;
+			std::vector<Board> getPossibleNextStates(unsigned int wizardID) const
+			{
+				std::vector<Move> moves = getPossibleMoves(wizardID);
+				std::vector<Board> states;
+
+				for (std::vector<Move>::size_type i = 0; i < moves.size(); i++)
+				{
+					states.emplace_back(move(moves[i], wizardID));
+				}
+
+				return states;
+			}
+
 			unsigned int getIndex(unsigned int x, unsigned int y) const
 			{
 				return x + y * width;

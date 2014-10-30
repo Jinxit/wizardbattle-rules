@@ -14,6 +14,8 @@ namespace WizardBattle
 
 			Wizard(unsigned int x, unsigned int y)
 				: x(x), y(y), alive(false) { };
+
+			const Wizard kill() const;
 		};
 	}
 }

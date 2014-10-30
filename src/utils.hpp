@@ -19,7 +19,8 @@ namespace WizardBattle
 			}
 		}
 
-		inline Board createBoard(unsigned int width, unsigned int height, unsigned int numPlayers)
+		inline Board createBoard(unsigned int numPlayers,
+			unsigned int width = 5, unsigned int height = 5)
 		{
 			std::vector<Wizard> wizards;
 			auto it = wizards.begin();

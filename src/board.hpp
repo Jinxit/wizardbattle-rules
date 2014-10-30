@@ -6,14 +6,12 @@
 
 #include "enums.hpp"
 #include "wizard.hpp"
+#include "move.hpp"
 
 namespace WizardBattle
 {
 	namespace Rules
 	{
-		// forward declaration
-		class Move;
-
 		class Board
 		{
 		private:
@@ -23,10 +21,42 @@ namespace WizardBattle
 			std::vector<unsigned int> temperatures;
 			Phase phase;
 
-			Board(unsigned int width, unsigned int height,
-				std::vector<Wizard> wizards, std::vector<unsigned int> temperatures, Phase phase)
+			Board(unsigned int width, unsigned int height, std::vector<Wizard> wizards,
+				std::vector<unsigned int> temperatures, Phase phase)
 				:	width(width), height(height), wizards(wizards), temperatures(temperatures),
 					phase(phase) { };
+
+			Board move(Move move, unsigned int wizardID) const
+			{
+				auto newWizards = wizards;
+				auto newTemperatures = temperatures;
+				auto & temp = newTemperatures[getIndex(move.x, move.y)];
+				auto & wiz = newWizards[wizardID];
+				Phase newPhase = phase;
+
+				switch (move.action)
+				{
+					case ACTION_RAISE:
+						temp += 1;
+						newPhase = PHASE_MOVE;
+						break;
+					case ACTION_LOWER:
+						temp -= 1;
+						newPhase = PHASE_MOVE;
+						break;
+
+					case ACTION_MOVE:
+						wiz = Wizard(move.x, move.y);
+						if (temp == 0)
+						{
+							wiz = wiz.kill();
+						}
+						newPhase = PHASE_TEMPERATURE;
+						break;
+				}
+
+				return Board(width, height, newWizards, newTemperatures, newPhase);
+			}
 
 			std::vector<Move> getPossibleMoves(unsigned int wizardID) const
 			{

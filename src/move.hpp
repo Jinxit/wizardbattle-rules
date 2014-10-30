@@ -9,6 +9,21 @@ namespace WizardBattle
 		{
 		private:
 		public:
+			enum Type
+			{
+				RAISE,
+				LOWER,
+				UP,
+				DOWN,
+				LEFT,
+				RIGHT
+			};
+
+			const Type type;
+			const unsigned int x, y;
+
+			Move(Type type, unsigned int x, unsigned int y)
+				: type(type), x(x), y(y) { };
 		};
 	}
 }

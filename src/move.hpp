@@ -20,6 +20,15 @@ namespace WizardBattle
 
 			Move(Action action, unsigned int x, unsigned int y)
 				: action(action), x(x), y(y) { };
+
+			bool operator==(const Move & other) const
+			{
+				return x == other.x && y == other.y && action == other.action;
+			};
+			bool operator!=(const Move & other) const
+			{
+				return !(*this == other);
+			};
 		};
 	}
 }

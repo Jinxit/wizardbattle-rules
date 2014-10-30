@@ -9,6 +9,11 @@ namespace WizardBattle
 		{
 		private:
 		public:
+			const unsigned int x, y;
+			const bool alive;
+
+			Wizard(unsigned int x, unsigned int y)
+				: x(x), y(y), alive(false) { };
 		};
 	}
 }

@@ -71,7 +71,7 @@ namespace WizardBattle
 
 						if (!isWizardAt(x, y))
 						{
-							if (temperatures[i] < std::min(width, height))
+							if (temperatures[i] < std::max(width, height))
 							{
 								moves.emplace_back(ACTION_RAISE, x, y);
 							}
